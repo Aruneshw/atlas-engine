@@ -2,7 +2,7 @@ name: build
 on:
   workflow_dispatch:
   push:
-    tags: ["v*"]
+    tags: ["v*", "check-*"]
 permissions:
   contents: write
 jobs:
@@ -21,6 +21,7 @@ jobs:
           set +e
           timeout 900 dist/Atlas_Engine-x86_64.AppImage --appimage-extract-and-run --selftest-train 2>&1 | tee selftest.log
           grep -q 'SELFTEST {"ok": true' selftest.log || { echo "::error::Linux self-test: $(grep -a SELFTEST selftest.log | cut -c1-600)"; exit 1; }
+          echo "::notice::Linux: $(grep -a SELFTEST selftest.log | cut -c1-420)"
       - uses: actions/upload-artifact@v4
         with: { name: appimage, path: dist/*.AppImage }
   windows:
@@ -35,10 +36,12 @@ jobs:
       - name: Real training from the package
         shell: pwsh
         run: |
+          Remove-Item "$env:LOCALAPPDATA\AtlasEngine\selftest_result.txt" -ErrorAction SilentlyContinue   # the quick check wrote one too
           $p = Start-Process -FilePath dist\atlas-engine\atlas-engine.exe -ArgumentList "--selftest-train" -PassThru
           if (-not $p.WaitForExit(900000)) { $p.Kill(); Write-Output "::error::Windows self-test timed out"; exit 1 }
+          if (-not (Test-Path "$env:LOCALAPPDATA\AtlasEngine\selftest_result.txt")) { Write-Output "::error::Windows self-test wrote no result"; exit 1 }
           $r = Get-Content "$env:LOCALAPPDATA\AtlasEngine\selftest_result.txt" -Raw
-          Write-Output $r
+          Write-Output "::notice::Windows: $($r.Substring(0, [Math]::Min(420, $r.Length)))"
           if ($r -notmatch '"ok": true') { Write-Output "::error::Windows self-test: $($r.Substring(0, [Math]::Min(600, $r.Length)))"; exit 1 }
       - uses: actions/upload-artifact@v4
         with: { name: windows-exe, path: dist/Atlas_Engine-windows-x64.zip }
