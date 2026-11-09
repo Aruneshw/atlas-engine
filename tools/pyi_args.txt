@@ -1,0 +1,9 @@
+--noconfirm
+--clean
+--windowed
+--name=atlas-engine
+--exclude-module=tkinter
+--exclude-module=numpy
+--exclude-module=PySide6.QtNetwork
+--exclude-module=PySide6.QtQml
+--exclude-module=PySide6.QtQuick

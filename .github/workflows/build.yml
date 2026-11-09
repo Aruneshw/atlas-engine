@@ -1,0 +1,23 @@
+name: build
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: tools/build_appimage.sh
+      - uses: actions/upload-artifact@v4
+        with: { name: appimage, path: dist/*.AppImage }
+  windows:
+    runs-on: windows-latest
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: powershell -ExecutionPolicy Bypass -File tools/build_windows.ps1
+      - uses: actions/upload-artifact@v4
+        with: { name: windows-exe, path: dist/Atlas_Engine-windows-x64.zip }

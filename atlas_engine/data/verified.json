@@ -1,0 +1,3101 @@
+{
+ "1:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8755914841681647,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "2:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.9155506701364043,
+   "higher_better": true
+  },
+  "seconds": 1.9
+ },
+ "3:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8781884495580722,
+   "higher_better": true
+  },
+  "seconds": 2.7
+ },
+ "4:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": -0.013720955828283365,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "5:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": -0.013720955828283365,
+   "higher_better": true
+  },
+  "seconds": 2.6
+ },
+ "6:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8776008293001921,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "7:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8754587400106058,
+   "higher_better": true
+  },
+  "seconds": 2.1
+ },
+ "8:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8604862410108186,
+   "higher_better": true
+  },
+  "seconds": 2.1
+ },
+ "9:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8766461754026782,
+   "higher_better": true
+  },
+  "seconds": 4.9
+ },
+ "10:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8887348702497688,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "11:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8613394577291673,
+   "higher_better": true
+  },
+  "seconds": 2.4
+ },
+ "12:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.7966001517273843,
+   "higher_better": true
+  },
+  "seconds": 2.4
+ },
+ "13:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8770088011810544,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "14:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.4320057601264402,
+   "higher_better": true
+  },
+  "seconds": 2.4
+ },
+ "15:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8440820052837871,
+   "higher_better": true
+  },
+  "seconds": 1.8
+ },
+ "16:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8098279832147732,
+   "higher_better": true
+  },
+  "seconds": 2.5
+ },
+ "17:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8160807162553256,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "18:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.618774191809278,
+   "higher_better": true
+  },
+  "seconds": 2.3
+ },
+ "19:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": -1.520673944486619,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.kernel_ridge.KernelRidge'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor wit",
+  "seconds": 2.5
+ },
+ "22:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8800317984105311,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.preprocessing._polynomial.SplineTransformer'>'.\nIt usually means the pipeline being converted contains a\ntransformer",
+  "seconds": 2.6
+ },
+ "23:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8755914841681648,
+   "higher_better": true
+  },
+  "seconds": 2.3
+ },
+ "24:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8912192958987906,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "26:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "seconds": 1.9
+ },
+ "27:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8610038610038611,
+   "higher_better": true
+  },
+  "seconds": 2.3
+ },
+ "28:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.83125,
+   "higher_better": true
+  },
+  "seconds": 2.9
+ },
+ "29:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.9150275373721479,
+   "higher_better": true
+  },
+  "seconds": 1.9
+ },
+ "30:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "onnx_reason": "NameError: Option 'zipmap' not in ['nocl', 'output_class_labels', 'raw_scores'] for class 'LinearSVC'.",
+  "seconds": 2.5
+ },
+ "31:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.35714285714285715,
+   "higher_better": true
+  },
+  "seconds": 3.9
+ },
+ "32:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.60625,
+   "higher_better": true
+  },
+  "seconds": 2.5
+ },
+ "33:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8285714285714285,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "34:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.4984520123839009,
+   "higher_better": true
+  },
+  "seconds": 2.3
+ },
+ "35:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8885448916408669,
+   "higher_better": true
+  },
+  "seconds": 2.5
+ },
+ "37:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "seconds": 2.7
+ },
+ "38:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.9150275373721479,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "39:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8885448916408669,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.neighbors._nearest_centroid.NearestCentroid'>'.\nIt usually means the pipeline being converted contains a\ntransformer",
+  "seconds": 2.6
+ },
+ "40:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "seconds": 2.1
+ },
+ "41:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.916083916083916,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "42:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8601398601398602,
+   "higher_better": true
+  },
+  "seconds": 2.6
+ },
+ "43:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.9150275373721479,
+   "higher_better": true
+  },
+  "onnx_reason": "Fail: [ONNXRuntimeError] : 1 : FAIL : Load model from /home/aruneshwaran/.cache/atlas-smoke/runs/43_classification/export/model.onnx failed:Fatal error: com.microsoft:Solve(-1) is not a registered fun",
+  "seconds": 2.3
+ },
+ "44:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8054054054054054,
+   "higher_better": true
+  },
+  "seconds": 2.4
+ },
+ "45:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "seconds": 4.7
+ },
+ "49:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "seconds": 4.6
+ },
+ "50:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8875,
+   "higher_better": true
+  },
+  "seconds": 4.4
+ },
+ "50:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8810396716465888,
+   "higher_better": true
+  },
+  "seconds": 4.6
+ },
+ "51:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.916083916083916,
+   "higher_better": true
+  },
+  "seconds": 3.4
+ },
+ "51:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8779376438844946,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "51:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 0.6292539866064396,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 5.3
+ },
+ "52:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8583792289535799,
+   "higher_better": true
+  },
+  "seconds": 3.1
+ },
+ "52:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8687416078270656,
+   "higher_better": true
+  },
+  "seconds": 2.7
+ },
+ "52:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 0.5878032387696231,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 5.3
+ },
+ "53:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.94375,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "53:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.9034150547283992,
+   "higher_better": true
+  },
+  "seconds": 2.1
+ },
+ "54:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.9442724458204335,
+   "higher_better": true
+  },
+  "seconds": 2.3
+ },
+ "54:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8216800938285077,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "55:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8857142857142857,
+   "higher_better": true
+  },
+  "onnx_reason": "ValueError: Unable to create node 'TreeEnsembleClassifier' with name='TreeEnsembleClassifier' and attributes={'base_values': array([0.26072627], dtype=float32),\n 'class_ids': [0,\n               0,\n   ",
+  "seconds": 2.1
+ },
+ "55:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8025931466013372,
+   "higher_better": true
+  },
+  "onnx_reason": "ValueError: Unable to create node 'TreeEnsembleRegressor' with name='TreeEnsembleRegressor' and attributes={'base_values': array([3.0240116], dtype=float32),\n 'n_targets': 1,\n 'nodes_falsenodeids': [n",
+  "seconds": 1.9
+ },
+ "56:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.9150275373721479,
+   "higher_better": true
+  },
+  "seconds": 2.3
+ },
+ "56:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.7225894998959448,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "56:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 1.8197433645832335,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 3.4
+ },
+ "57:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8857142857142857,
+   "higher_better": true
+  },
+  "seconds": 3.1
+ },
+ "57:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.7058969063298384,
+   "higher_better": true
+  },
+  "seconds": 2.5
+ },
+ "57:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 1.9091572369080625,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 3.9
+ },
+ "58:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8328173374613003,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'catboost.core.CatBoostClassifier'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor wit",
+  "seconds": 2.4
+ },
+ "58:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.5457966711277906,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'catboost.core.CatBoostRegressor'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with",
+  "seconds": 2.3
+ },
+ "60:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8193979933110368,
+   "higher_better": true
+  },
+  "seconds": 5.1
+ },
+ "60:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.8962986512914013,
+   "higher_better": true
+  },
+  "seconds": 6.4
+ },
+ "61:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.9150275373721479,
+   "higher_better": true
+  },
+  "seconds": 6.5
+ },
+ "61:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.894980404559223,
+   "higher_better": true
+  },
+  "seconds": 6.0
+ },
+ "64:classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.8041958041958042,
+   "higher_better": true
+  },
+  "seconds": 4.9
+ },
+ "64:regression": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "r2",
+   "value": 0.54706977477568,
+   "higher_better": true
+  },
+  "seconds": 6.2
+ },
+ "67:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.16617665293065004,
+   "higher_better": true
+  },
+  "seconds": 1.9
+ },
+ "69:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.17912006341047407,
+   "higher_better": true
+  },
+  "seconds": 1.9
+ },
+ "70:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.18103726788139746,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.cluster._bisect_k_means.BisectingKMeans'>'.\nIt usually means the pipeline being converted contains a\ntransformer or ",
+  "seconds": 1.8
+ },
+ "73:clustering": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.11946139823665843,
+   "higher_better": true
+  },
+  "seconds": 2.1
+ },
+ "75:clustering": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.3979633894683621,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "76:clustering": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.23069918105197712,
+   "higher_better": true
+  },
+  "seconds": 1.8
+ },
+ "77:clustering": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.373457654063896,
+   "higher_better": true
+  },
+  "seconds": 5.6
+ },
+ "78:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.2799036927640113,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.cluster._mean_shift.MeanShift'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predicto",
+  "seconds": 5.7
+ },
+ "79:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.16312881398088533,
+   "higher_better": true
+  },
+  "seconds": 3.3
+ },
+ "80:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.36605533654504074,
+   "higher_better": true
+  },
+  "seconds": 3.0
+ },
+ "82:clustering": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.19017160397286004,
+   "higher_better": true
+  },
+  "seconds": 2.2
+ },
+ "83:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.19061450954705922,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.cluster._affinity_propagation.AffinityPropagation'>'.\nIt usually means the pipeline being converted contains a\ntrans",
+  "seconds": 3.1
+ },
+ "84:clustering": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "silhouette",
+   "value": 0.1375480966401563,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.cluster._birch.Birch'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with no",
+  "seconds": 3.1
+ },
+ "89:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7981639387108367,
+   "higher_better": true
+  },
+  "seconds": 3.9
+ },
+ "90:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7776013590773956,
+   "higher_better": true
+  },
+  "seconds": 3.7
+ },
+ "91:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7353262112450587,
+   "higher_better": true
+  },
+  "seconds": 3.9
+ },
+ "92:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.774412754418635,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.decomposition._sparse_pca.SparsePCA'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a pr",
+  "seconds": 5.9
+ },
+ "93:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7981639387108367,
+   "higher_better": true
+  },
+  "seconds": 2.8
+ },
+ "95:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7956810088536052,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.decomposition._fastica.FastICA'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predict",
+  "seconds": 2.0
+ },
+ "96:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.8220065993661995,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.decomposition._nmf.NMF'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with ",
+  "seconds": 2.4
+ },
+ "97:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.782913522166683,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.decomposition._factor_analysis.FactorAnalysis'>'.\nIt usually means the pipeline being converted contains a\ntransform",
+  "seconds": 2.3
+ },
+ "100:dimreduction": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.9687608219804633,
+   "higher_better": true
+  },
+  "seconds": 2.4
+ },
+ "101:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.9356202424123624,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'umap.umap_.UMAP'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with no correspondin",
+  "seconds": 23.8
+ },
+ "102:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.8277304060897122,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.manifold._isomap.Isomap'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with",
+  "seconds": 2.6
+ },
+ "103:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7851350909863112,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.manifold._locally_linear.LocallyLinearEmbedding'>'.\nIt usually means the pipeline being converted contains a\ntransfo",
+  "seconds": 2.1
+ },
+ "104:dimreduction": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7613708386422294,
+   "higher_better": true
+  },
+  "seconds": 2.1
+ },
+ "105:dimreduction": {
+  "train": true,
+  "predict": "not_applicable",
+  "onnx": "not_applicable",
+  "api": "not_applicable",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.8379169525303015,
+   "higher_better": true
+  },
+  "seconds": 3.4
+ },
+ "107:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7532359763468262,
+   "higher_better": true
+  },
+  "seconds": 2.4
+ },
+ "110:dimreduction": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "trustworthiness",
+   "value": 0.7153386258943448,
+   "higher_better": true
+  },
+  "seconds": 6.1
+ },
+ "129:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.9266666666666665,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 2.7
+ },
+ "130:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.6885281385281385,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 1.8
+ },
+ "132:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.9028571428571428,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 2.5
+ },
+ "133:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.8528571428571428,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'sklearn.covariance._elliptic_envelope.EllipticEnvelope'>'.\nIt usually means the pipeline being converted contains a\ntransfor",
+  "seconds": 2.6
+ },
+ "134:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.35904761904761906,
+   "higher_better": true
+  },
+  "seconds": 2.5
+ },
+ "136:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.6970760233918128,
+   "higher_better": true
+  },
+  "seconds": 2.9
+ },
+ "137:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.8111111111111111,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "138:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.8111111111111111,
+   "higher_better": true
+  },
+  "seconds": 2.0
+ },
+ "139:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.7888888888888888,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 1.6
+ },
+ "140:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.619298245614035,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'pyod.models.hbos.HBOS'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with no corres",
+  "seconds": 6.8
+ },
+ "141:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.7833333333333332,
+   "higher_better": true
+  },
+  "onnx_reason": "MissingShapeCalculator: Unable to find a shape calculator for type '<class 'pyod.models.ecod.ECOD'>'.\nIt usually means the pipeline being converted contains a\ntransformer or a predictor with no corres",
+  "seconds": 9.1
+ },
+ "142:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.925,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 3.1
+ },
+ "143:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.8528571428571428,
+   "higher_better": true
+  },
+  "seconds": 9.0
+ },
+ "144:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.15918679640038483,
+   "higher_better": true
+  },
+  "seconds": 8.7
+ },
+ "145:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.18460763598377317,
+   "higher_better": true
+  },
+  "seconds": 7.5
+ },
+ "150:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.9666666666666666,
+   "higher_better": true
+  },
+  "seconds": 6.0
+ },
+ "151:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.6787301587301586,
+   "higher_better": true
+  },
+  "seconds": 5.8
+ },
+ "158:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.34129487179487183,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 1.8
+ },
+ "159:anomaly": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "pr_auc",
+   "value": 0.5836363636363637,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this detector has no ONNX converter",
+  "seconds": 1.5
+ },
+ "165:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.301411811747821,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 5.4
+ },
+ "166:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.0438534423717196,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 5.0
+ },
+ "167:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 45.916828804603824,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 4.8
+ },
+ "168:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 0.18540752576323893,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 4.5
+ },
+ "169:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 0.18540198536225339,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 4.3
+ },
+ "170:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.274040145701029,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 3.9
+ },
+ "171:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.1892550835990123,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 3.9
+ },
+ "172:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 0.18448062231999343,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 5.6
+ },
+ "189:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 1.9091572369080625,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: statistical forecasters have no ONNX form",
+  "seconds": 3.9
+ },
+ "190:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 3.141205096404147,
+   "higher_better": false
+  },
+  "seconds": 4.5
+ },
+ "191:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.7151274679540545,
+   "higher_better": false
+  },
+  "seconds": 5.4
+ },
+ "191:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.7747545582047686,
+   "higher_better": true
+  },
+  "seconds": 6.1
+ },
+ "199:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.0498872977788634,
+   "higher_better": false
+  },
+  "seconds": 4.2
+ },
+ "204:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 3.291038052871905,
+   "higher_better": false
+  },
+  "seconds": 5.6
+ },
+ "204:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.44359756097560976,
+   "higher_better": true
+  },
+  "seconds": 5.6
+ },
+ "343:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.6452776445150445,
+   "higher_better": false
+  },
+  "seconds": 3.5
+ },
+ "343:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.4552238805970149,
+   "higher_better": true
+  },
+  "seconds": 4.8
+ },
+ "344:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 3.141205096404147,
+   "higher_better": false
+  },
+  "seconds": 4.6
+ },
+ "344:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.6991758241758241,
+   "higher_better": true
+  },
+  "seconds": 5.9
+ },
+ "345:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.7108264539955456,
+   "higher_better": false
+  },
+  "seconds": 4.2
+ },
+ "345:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.7509746588693957,
+   "higher_better": true
+  },
+  "seconds": 5.3
+ },
+ "346:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.788370445894751,
+   "higher_better": false
+  },
+  "seconds": 3.7
+ },
+ "346:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.4552238805970149,
+   "higher_better": true
+  },
+  "seconds": 6.2
+ },
+ "347:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 3.141205096404147,
+   "higher_better": false
+  },
+  "seconds": 3.5
+ },
+ "347:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.6991758241758241,
+   "higher_better": true
+  },
+  "seconds": 5.4
+ },
+ "357:forecasting": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mae",
+   "value": 2.620526696356465,
+   "higher_better": false
+  },
+  "seconds": 4.8
+ },
+ "357:seq_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.7509746588693957,
+   "higher_better": true
+  },
+  "seconds": 5.8
+ },
+ "317:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 5.9
+ },
+ "318:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 15.8
+ },
+ "320:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 73.6
+ },
+ "321:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 7.7
+ },
+ "322:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 8.0
+ },
+ "323:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.16666666666666666,
+   "higher_better": true
+  },
+  "seconds": 18.3
+ },
+ "324:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 10.6
+ },
+ "325:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 9.2
+ },
+ "326:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 13.4
+ },
+ "327:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 5.8
+ },
+ "328:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 6.1
+ },
+ "329:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 6.6
+ },
+ "330:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 8.4
+ },
+ "331:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 6.8
+ },
+ "332:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 9.3
+ },
+ "333:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 8.4
+ },
+ "334:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 10.7
+ },
+ "337:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 8.1
+ },
+ "338:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 12.0
+ },
+ "339:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 17.8
+ },
+ "340:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 8.0
+ },
+ "341:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 12.9
+ },
+ "342:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.2857142857142857,
+   "higher_better": true
+  },
+  "seconds": 8.6
+ },
+ "349:video_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 15.3
+ },
+ "369:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 23.5
+ },
+ "370:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 27.7
+ },
+ "371:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 30.0
+ },
+ "372:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.40106951871657753,
+   "higher_better": true
+  },
+  "seconds": 30.8
+ },
+ "373:text_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "perplexity",
+   "value": 991.9990000836758,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 17.6
+ },
+ "374:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.5942028985507246,
+   "higher_better": true
+  },
+  "seconds": 25.8
+ },
+ "375:text_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "perplexity",
+   "value": 991.9990000836758,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 9.2
+ },
+ "384:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 11.5
+ },
+ "386:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 7.4
+ },
+ "387:text_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 5.8
+ },
+ "481:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 44.3
+ },
+ "482:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 11.2
+ },
+ "483:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 27.7
+ },
+ "484:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 17.5
+ },
+ "485:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 37.1
+ },
+ "486:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.375,
+   "higher_better": true
+  },
+  "seconds": 12.2
+ },
+ "487:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 20.6
+ },
+ "492:image_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "onnx_reason": "TypeError: scaled_dot_product_attention(): argument 'is_causal' must be bool, not Tensor",
+  "seconds": 11.8
+ },
+ "495:representation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "knn_accuracy",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 8.6
+ },
+ "496:representation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "knn_accuracy",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 9.7
+ },
+ "498:representation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "knn_accuracy",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 9.5
+ },
+ "499:representation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "knn_accuracy",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 9.1
+ },
+ "513:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.002658261736194069,
+   "higher_better": true
+  },
+  "seconds": 22.0
+ },
+ "518:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "mismatch",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.01796403196799293,
+   "higher_better": true
+  },
+  "onnx_reason": "{\"reason\": \"box count differs\"}",
+  "seconds": 11.7
+ },
+ "519:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.08889367197589325,
+   "higher_better": true
+  },
+  "seconds": 24.8
+ },
+ "524:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "seconds": 23.3
+ },
+ "525:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "mismatch",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "{\"reason\": \"box count differs: 5 vs 4\"}",
+  "seconds": 22.4
+ },
+ "526:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "mismatch",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "{\"max_difference\": 88.05915832519531, \"rows\": 20, \"unit\": \"pixels\"}",
+  "seconds": 26.1
+ },
+ "529:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "seconds": 26.3
+ },
+ "534:object_detection": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "map50",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "TypeError: RTDETR.__init__() got an unexpected keyword argument 'task'",
+  "seconds": 60.0
+ },
+ "542:semantic_segmentation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_iou",
+   "value": 0.3203457923242088,
+   "higher_better": true
+  },
+  "seconds": 12.3
+ },
+ "543:semantic_segmentation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_iou",
+   "value": 0.4289089792818993,
+   "higher_better": true
+  },
+  "seconds": 7.6
+ },
+ "544:semantic_segmentation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_iou",
+   "value": 0.48472121551500813,
+   "higher_better": true
+  },
+  "seconds": 8.8
+ },
+ "548:semantic_segmentation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_iou",
+   "value": 0.4632295955333389,
+   "higher_better": true
+  },
+  "onnx_reason": "SymbolicValueError: Unsupported: ONNX export of operator adaptive_avg_pool2d, output size that are not factor of input size. Please feel free to request support or submit a pull request on PyTorch Git",
+  "seconds": 12.1
+ },
+ "549:semantic_segmentation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_iou",
+   "value": 0.048828125,
+   "higher_better": true
+  },
+  "seconds": 6.9
+ },
+ "552:semantic_segmentation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_iou",
+   "value": 0.8273786995198187,
+   "higher_better": true
+  },
+  "seconds": 7.1
+ },
+ "601:video_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 10.6
+ },
+ "603:video_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.3333333333333333,
+   "higher_better": true
+  },
+  "seconds": 19.7
+ },
+ "611:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.5134178400039673,
+   "higher_better": false
+  },
+  "seconds": 5.2
+ },
+ "612:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.5133869647979736,
+   "higher_better": false
+  },
+  "seconds": 5.0
+ },
+ "614:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.5257651209831238,
+   "higher_better": false
+  },
+  "seconds": 5.3
+ },
+ "615:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.5623942017555237,
+   "higher_better": false
+  },
+  "seconds": 5.1
+ },
+ "617:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.561939537525177,
+   "higher_better": false
+  },
+  "seconds": 5.8
+ },
+ "628:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.7262729406356812,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: a diffusion sampler is a loop over a network, not one exportable graph",
+  "seconds": 54.6
+ },
+ "629:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.5916451215744019,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: a diffusion sampler is a loop over a network, not one exportable graph",
+  "seconds": 14.0
+ },
+ "635:image_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "sliced_wasserstein",
+   "value": 0.40886634588241577,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: a diffusion sampler is a loop over a network, not one exportable graph",
+  "seconds": 15.3
+ },
+ "658:audio_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 6.9
+ },
+ "659:audio_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 6.1
+ },
+ "667:audio_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 6.0
+ },
+ "670:audio_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "seconds": 7.0
+ },
+ "678:text_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "perplexity",
+   "value": 1023.8994385042834,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 10.2
+ },
+ "680:text_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "perplexity",
+   "value": 1023.8452460423322,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 9.8
+ },
+ "681:text_generation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "perplexity",
+   "value": 991.9990000836758,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 9.2
+ },
+ "687:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.77,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 2.4
+ },
+ "688:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.65,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 2.5
+ },
+ "689:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.72,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 2.5
+ },
+ "692:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.66,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 3.4
+ },
+ "693:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 3.5
+ },
+ "695:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 2.9
+ },
+ "696:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 3.0
+ },
+ "697:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 3.0
+ },
+ "698:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 0.0,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 2.4
+ },
+ "699:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 9.35,
+   "higher_better": true
+  },
+  "seconds": 5.7
+ },
+ "702:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 9.35,
+   "higher_better": true
+  },
+  "seconds": 6.0
+ },
+ "704:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 55.85,
+   "higher_better": true
+  },
+  "seconds": 5.9
+ },
+ "706:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 76.25,
+   "higher_better": true
+  },
+  "seconds": 6.4
+ },
+ "707:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 141.95,
+   "higher_better": true
+  },
+  "seconds": 8.6
+ },
+ "708:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": 9.7,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this policy has no single-network form",
+  "seconds": 10.4
+ },
+ "709:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": -1626.3292669438138,
+   "higher_better": true
+  },
+  "seconds": 10.0
+ },
+ "710:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": -1557.8591069412796,
+   "higher_better": true
+  },
+  "seconds": 8.0
+ },
+ "711:reinforcement_learning": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "mean_reward",
+   "value": -1259.9281083581495,
+   "higher_better": true
+  },
+  "seconds": 9.0
+ },
+ "752:node_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.41700404858299595,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 12.2
+ },
+ "753:node_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 1.0,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 9.7
+ },
+ "754:node_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.5897435897435898,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 8.4
+ },
+ "755:node_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.4074074074074074,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 7.6
+ },
+ "756:node_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.23809523809523808,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 6.4
+ },
+ "760:node_classification": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "f1_macro",
+   "value": 0.4074074074074074,
+   "higher_better": true
+  },
+  "onnx_reason": "NotImplementedError: this model type is delivered through the REST API bundle",
+  "seconds": 7.9
+ },
+ "766:recommendation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "rmse",
+   "value": 0.5771523696838328,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model has no network to export",
+  "seconds": 5.5
+ },
+ "767:recommendation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "rmse",
+   "value": 0.8054707858062125,
+   "higher_better": false
+  },
+  "seconds": 3.5
+ },
+ "768:recommendation": {
+  "train": true,
+  "predict": true,
+  "onnx": "unsupported",
+  "api": "ok",
+  "primary": {
+   "name": "rmse",
+   "value": 0.6334860055286117,
+   "higher_better": false
+  },
+  "onnx_reason": "NotImplementedError: this model has no network to export",
+  "seconds": 2.4
+ },
+ "769:recommendation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "rmse",
+   "value": 0.805526611147806,
+   "higher_better": false
+  },
+  "seconds": 3.5
+ },
+ "771:recommendation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "rmse",
+   "value": 0.856078583726903,
+   "higher_better": false
+  },
+  "seconds": 3.8
+ },
+ "772:recommendation": {
+  "train": true,
+  "predict": true,
+  "onnx": "ok",
+  "api": "ok",
+  "primary": {
+   "name": "rmse",
+   "value": 0.8119595046637714,
+   "higher_better": false
+  },
+  "seconds": 3.8
+ }
+}

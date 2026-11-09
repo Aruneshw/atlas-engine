@@ -1,0 +1,10 @@
+# Builder for the Windows .exe on Linux: Wine plus the official Python for Windows package from nuget.org.
+FROM ubuntu:24.04
+RUN dpkg --add-architecture i386 && apt-get update -qq && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends wine wine64 xvfb xauth curl ca-certificates unzip zip > /dev/null
+ENV WINEDEBUG=-all WINEPREFIX=/wine
+RUN wineboot --init 2>/dev/null; wineserver -w; \
+    curl -fsSL -o /tmp/py.zip https://www.nuget.org/api/v2/package/python/3.12.10 && unzip -q /tmp/py.zip -d /opt/nuget && mv /opt/nuget/tools /opt/py && \
+    wine /opt/py/python.exe -m pip install -q "PySide6-Essentials==6.8.2.1" "pyinstaller==6.16.0"; wineserver -w; \
+    wine /opt/py/python.exe -c "import PySide6, PyInstaller; print('builder ready', PySide6.__version__, PyInstaller.__version__)"
+RUN mkdir -p /opt/uv && curl -fsSL -o /tmp/uv.zip https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-pc-windows-msvc.zip && unzip -q /tmp/uv.zip -d /opt/uv

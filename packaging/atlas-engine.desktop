@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Atlas Engine
+Comment=Train, compare and export machine learning models
+Exec=atlas-engine
+Icon=atlas-engine
+Categories=Development;Science;
+Terminal=false
