@@ -56,6 +56,7 @@ class Runner(QObject):
         self.cancelled = False
         self.on_event = None
         self.current = None
+        self.governor = None
 
     @property
     def running(self):
@@ -83,7 +84,11 @@ class Runner(QObject):
         p.finished.connect(self._exited)
         p.errorOccurred.connect(self._failed_to_start)
         self.proc = p
-        p.start(self.current.argv[0], self.current.argv[1:])
+        argv = self.current.argv
+        if self.current.governed and self.governor is not None:
+            argv = self.governor.prepare(argv)
+            p.started.connect(lambda: self.governor.attach(p.processId()))
+        p.start(str(argv[0]), [str(a) for a in argv[1:]])
 
     def _failed_to_start(self, err):
         if err == QProcess.ProcessError.FailedToStart and self.proc is not None:
@@ -119,6 +124,8 @@ class Runner(QObject):
             self._line(ANSI.sub("", self.buf))
         self.proc = None
         step = self.current
+        if step.governed and self.governor is not None:
+            self.governor.detach()
         if self.cancelled:
             self.steps = []
             self.finished.emit(False, True)

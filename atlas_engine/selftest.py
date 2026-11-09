@@ -64,11 +64,17 @@ def full(app, w):
             w.target_box.setCurrentIndex(w.target_box.findData("label"))
             w.selected_algo = 26
             w.use_algo()
+            w.hw_config.rows["cpu"].slider.setValue(50)     # prove a limited run works from a packaged build
+            w.save_limits.stop()                            # and leave the user's saved limits alone
             w.start_training()
             state["phase"] = "training"
+        elif p == "training" and w.runner.running and w.governor.scope is not None:
+            state["limited"] = True
         elif p == "training" and not w.runner.running:
             if not w.to_results.isEnabled():
                 return fail(w.train_msg.text())
+            if w.hw.limits_ok and not state.get("limited"):
+                return fail("limits are available here, but the job never ran under them")
             w.goto(6)
             w.exp_dir.setText(str(out))
             w.run_export()
@@ -77,7 +83,7 @@ def full(app, w):
             report = json.loads((out / "export_report.json").read_text()) if (out / "export_report.json").exists() else None
             m = json.loads((Path(w.run_dir) / "metrics.json").read_text())
             ok = bool(report) and report["onnx"]["status"] == "ok" and report["api"]["status"] == "ok"
-            _report(ok=ok, algorithm=m["name"], metric=m["primary"], onnx=report and report["onnx"], files=sorted(os.listdir(out)))
+            _report(ok=ok, algorithm=m["name"], metric=m["primary"], limits=dict(available=w.hw.limits_ok, applied=bool(state.get("limited"))), onnx=report and report["onnx"], files=sorted(os.listdir(out)))
             app.exit(0 if ok else 1)
 
     t = QTimer(app)

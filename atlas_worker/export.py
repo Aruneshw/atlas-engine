@@ -249,7 +249,7 @@ EXPOSE 8000
 CMD ["python", "serve.py"]
 """
 
-WORKER_FILES = ("__init__.py", "data.py", "fileinfo.py", "protocol.py", "predictor.py", "simple.py", "tabular.py", "metrics.py", "registry.py",
+WORKER_FILES = ("__init__.py", "audit.py", "data.py", "fileinfo.py", "protocol.py", "predictor.py", "simple.py", "tabular.py", "metrics.py", "registry.py",
                 "forecast.py", "deep.py", "vision.py", "runtime_pins.py", "nlp.py", "detect.py", "segment.py", "media.py", "gen.py", "rl.py", "relational.py")
 
 
@@ -260,7 +260,12 @@ def _requirements(groups):
             wanted += PINS[g]
     wanted += [p for p in PINS["core"] if p.split("==")[0] in {"numpy", "pandas", "scipy", "scikit-learn", "joblib", "psutil", "fastapi", "uvicorn"}]
     pinned = {p.split("==")[0]: p for g in PINS.values() for p in g}
-    return sorted({pinned.get(w.split("==")[0], w) for w in wanted})
+    out = sorted({pinned.get(w.split("==")[0], w) for w in wanted})
+    if any(p.startswith("xgboost==") for p in out):      # GPU runtimes on CUDA 12 drivers use a different XGBoost from the pin
+        from importlib.metadata import version
+
+        out = [f"xgboost=={version('xgboost')}" if p.startswith("xgboost==") else p for p in out]
+    return out
 
 
 def export_api(p, out, groups):

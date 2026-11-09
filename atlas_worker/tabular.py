@@ -12,7 +12,8 @@ import numpy as np
 import pandas as pd
 
 from . import registry
-from .data import DataError, coerce, split_indices
+from . import audit
+from .data import DataError, TimeFolds, coerce, split_indices
 from .metrics import anomaly_metrics, classification_metrics, regression_metrics
 from .protocol import log, stage
 from .simple import SIMPLE
@@ -187,6 +188,13 @@ def run_supervised(df, features, job, algo, impl, params, ctx):
                           + (" Use a larger test share or more data." if chrono else ""))
     X = coerce(df, features)
     log("preprocessing is fitted on the training split only")
+    leaks = audit.find_leaks(X.iloc[tr], y[tr], features, task)
+    for finding in leaks:
+        warn_user(ctx, "Possible leak: " + finding + " Untick it on the Dataset page unless you will truly know it at prediction time.")
+    if not leaks:
+        log("leak scan: no column gives away the target")
+    for finding in audit.split_problems(X, features, tr, te):
+        warn_user(ctx, finding)
 
     stage("build")
     _clamp_components(params, algo, len(tr), len(features))
@@ -202,7 +210,7 @@ def run_supervised(df, features, job, algo, impl, params, ctx):
         from sklearn.model_selection import KFold, StratifiedKFold, TimeSeriesSplit
 
         k = max(2, folds or 3)
-        splitter = (TimeSeriesSplit(n_splits=k) if chrono else
+        splitter = (TimeFolds(k, job["_times"][tr]) if chrono and job.get("_times") is not None else TimeSeriesSplit(n_splits=k) if chrono else
                     StratifiedKFold(n_splits=k, shuffle=True, random_state=42) if task == "classification" else
                     KFold(n_splits=k, shuffle=True, random_state=42))
     scoring = "f1_macro" if task == "classification" else "r2"
@@ -225,11 +233,13 @@ def run_supervised(df, features, job, algo, impl, params, ctx):
     if task == "classification":
         val = classification_metrics(pipe, X.iloc[va], y[va], classes)
         test = classification_metrics(pipe, X.iloc[te], y[te], classes, charts=charts)
+        test.update(audit.classification_extras(np.ravel(pipe.predict(X.iloc[te])).astype(int), y[tr], y[te]))
         primary = ("f1_macro", test["f1_macro"], True)
     else:
         val = regression_metrics(pipe.predict(X.iloc[va]), y[va])
         pred = np.ravel(pipe.predict(X.iloc[te]))
         test = regression_metrics(pred, y[te])
+        test.update(audit.regression_extras(pred, y[tr], y[te]))
         primary = ("r2", test["r2"], True)
         i = _thin(len(te))
         charts.append(dict(type="scatter", title="Predicted vs actual (test)", x=y[te][i], y=pred[i],
@@ -237,6 +247,7 @@ def run_supervised(df, features, job, algo, impl, params, ctx):
     imp = _importance(pipe)
     if imp:
         charts.append(dict(type="bars", title="Most influential features", labels=imp[0], values=imp[1]))
+    audit.report_extras(task, test, primary[1], lambda m: warn_user(ctx, m))
 
     stage("save")
     pred_col = np.ravel(pipe.predict(X.iloc[te]))

@@ -229,7 +229,16 @@ def validate(df, job) -> tuple[pd.DataFrame, list[dict]]:
         bad = int(ts.isna().sum())
         if bad > 0.05 * len(df):
             raise DataError(f"Time column '{time_col}': {bad} of {len(df)} values could not be read as dates.")
-        df = df.assign(__t=ts).dropna(subset=["__t"]).sort_values("__t", kind="stable").drop(columns="__t")
+        df = df.assign(__t=ts).dropna(subset=["__t"]).sort_values("__t", kind="stable")
+        job["_times"] = df["__t"].to_numpy()
+        df = df.drop(columns="__t")
+        distinct = len(pd.unique(job["_times"]))
+        if job["task"] in ("forecasting", "seq_classification") and distinct < len(df):
+            raise DataError(f"'{time_col}' has {len(df):,} rows but only {distinct:,} different times, so this is many series mixed together. "
+                            "A forecast needs one row per time. Use Regression or Classification with this time column, or keep a single series.")
+        gaps = pd.Series(pd.unique(job["_times"])).diff().dropna()
+        if job["task"] == "forecasting" and len(gaps) and gaps.max() > 3 * gaps.median():
+            log(f"'{time_col}' has gaps: the longest step is {gaps.max() / gaps.median():.0f} times the usual one, and forecasters assume even steps", "warn")
         log(f"sorted by '{time_col}'; every split will follow time order")
     df = df.reset_index(drop=True)
     missing = df.isna().mean()
@@ -242,6 +251,30 @@ def validate(df, job) -> tuple[pd.DataFrame, list[dict]]:
     return df, features
 
 
+def _snap(i, times):
+    """Move a split point forward so rows that share a timestamp stay on the same side."""
+    while 0 < i < len(times) and times[i] == times[i - 1]:
+        i += 1
+    return i
+
+
+class TimeFolds:
+    """Time-ordered cross-validation that never puts one timestamp on both sides of a fold."""
+
+    def __init__(self, n_splits, times):
+        self.n_splits, self.times = n_splits, np.asarray(times)
+
+    def get_n_splits(self, X=None, y=None, groups=None):
+        return self.n_splits
+
+    def split(self, X, y=None, groups=None):
+        from sklearn.model_selection import TimeSeriesSplit
+
+        distinct = np.unique(self.times)
+        for a, b in TimeSeriesSplit(n_splits=self.n_splits).split(distinct):
+            yield np.where(self.times <= distinct[a[-1]])[0], np.where(np.isin(self.times, distinct[b]))[0]
+
+
 def split_indices(n, y, job):
     """Train / validation / test indices. Chronological when a time column is set."""
     s = job.get("split") or {}
@@ -249,6 +282,12 @@ def split_indices(n, y, job):
     chrono = bool(job["dataset"].get("time_column")) or job["task"] in ("forecasting", "seq_classification")
     if chrono:
         a, b = int(n * (1 - val - test)), int(n * (1 - test))
+        times = job.get("_times")
+        if times is not None and len(times) == n:
+            a = _snap(a, times)
+            b = _snap(max(b, a + 1), times)
+            if not 0 < a < b < n:
+                raise DataError("Too few different times to keep training, validation and test apart. Add more time points.")
         return np.arange(a), np.arange(a, b), np.arange(b, n), True
     from sklearn.model_selection import train_test_split
 

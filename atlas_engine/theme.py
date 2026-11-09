@@ -92,6 +92,14 @@ QTableCornerButton::section {{ background: {RAISED}; border: none; }}
 QPlainTextEdit#terminal {{ background: #090d0b; border: 1px solid {LINE}; color: {TEXT}; padding: 8px; selection-background-color: {ACCENT_DIM}; selection-color: {BG}; }}
 QProgressBar {{ background: {BG}; border: 1px solid {LINE}; height: 8px; text-align: center; color: transparent; }}
 QProgressBar::chunk {{ background: {ACCENT_DIM}; }}
+QSlider::groove:horizontal {{ height: 4px; background: {LINE}; }}
+QSlider::sub-page:horizontal {{ background: {ACCENT_DIM}; }}
+QSlider::handle:horizontal {{ width: 11px; margin: -5px 0; background: {ACCENT}; border-radius: 2px; }}
+QSlider::handle:horizontal:disabled {{ background: {FAINT}; }}
+QSlider::sub-page:horizontal:disabled {{ background: {LINE}; }}
+QPushButton#accel {{ border-color: {ACCENT_DIM}; color: {ACCENT}; font-weight: 700; }}
+QPushButton#accel:checked {{ background: {ACCENT}; color: {BG}; border-color: {ACCENT}; }}
+QPushButton#accel:disabled {{ color: {FAINT}; border-color: {LINE}; background: {PANEL}; }}
 QScrollBar:vertical {{ background: transparent; width: 10px; margin: 0; }}
 QScrollBar::handle:vertical {{ background: {LINE}; min-height: 28px; border-radius: 3px; }}
 QScrollBar::handle:vertical:hover {{ background: {FAINT}; }}

@@ -49,6 +49,12 @@ def cmd_train(job_path):
         params = registry.resolve_params(algo, job.get("params"))
         ctx = {}
         t0 = time.time()
+        if job.get("vram_limit_mb") and job.get("device") == "cuda" and "torch" in algo["groups"]:
+            import torch
+
+            total_mb = torch.cuda.get_device_properties(0).total_memory / 1048576
+            torch.cuda.set_per_process_memory_fraction(min(1.0, job["vram_limit_mb"] / total_mb), 0)
+            log(f"GPU memory limited to {job['vram_limit_mb']} MB: batches shrink to fit instead of stopping the run")
         stage("validate")
         adapter = impl["adapter"]
         if adapter in NO_TABLE:
@@ -194,7 +200,37 @@ def cmd_export(args):
         sys.exit(4)
 
 
-def cmd_selfcheck():
+def _driver_gpu_name():
+    """The GPU's name from the driver, for runtimes with no torch to ask. None if hidden or absent."""
+    if os.environ.get("CUDA_VISIBLE_DEVICES") == "":
+        return None
+    import subprocess
+
+    try:
+        out = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True, text=True, timeout=15)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return out.stdout.strip().splitlines()[0] if out.returncode == 0 and out.stdout.strip() else None
+
+
+def _xgboost_reaches_gpu():
+    """XGBoost quietly falls back to CPU when its CUDA build is newer than the driver, so ask it by training."""
+    import json as _json
+    import warnings
+
+    import numpy as np
+    import xgboost as xgb
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        x = np.arange(64, dtype=float).reshape(32, 2)
+        booster = xgb.train({"device": "cuda", "tree_method": "hist", "verbosity": 0}, xgb.DMatrix(x, label=x[:, 0]), num_boost_round=1)
+    device = _json.loads(booster.save_config())["learner"]["generic_param"]["device"]
+    built = ".".join(map(str, xgb.build_info().get("CUDA_VERSION", [])))
+    return device.startswith("cuda"), f"XGBoost {xgb.__version__} is built for CUDA {built}, which this NVIDIA driver cannot run"
+
+
+def cmd_selfcheck(args=()):
     from .protocol import emit
 
     info = dict(torch=None, cuda=False, gpu_name=None, cuda_version=None)
@@ -205,10 +241,18 @@ def cmd_selfcheck():
         if info["cuda"]:
             torch.zeros(1).cuda()
             info["gpu_name"] = torch.cuda.get_device_name(0)
-    except ImportError:
-        pass
+    except ImportError:                  # XGBoost and others reach the GPU without torch
+        name = _driver_gpu_name()
+        info.update(cuda=name is not None, gpu_name=name)
     except Exception as e:
         info.update(cuda=False, error=f"{type(e).__name__}: {e}")
+    if "xgboost" in args and info["cuda"]:
+        try:
+            ok, why = _xgboost_reaches_gpu()
+            if not ok:
+                info.update(cuda=False, error=why)
+        except Exception as e:
+            info.update(cuda=False, error=f"{type(e).__name__}: {e}")
     emit("selfcheck", **info)
 
 
@@ -237,7 +281,7 @@ def main():
     elif cmd == "export":
         cmd_export(args)
     elif cmd == "selfcheck":
-        cmd_selfcheck()
+        cmd_selfcheck(args)
     elif cmd == "convert":
         cmd_convert(*args)
     else:

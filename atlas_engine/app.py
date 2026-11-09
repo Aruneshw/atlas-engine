@@ -8,12 +8,13 @@ import re
 import subprocess
 import sys
 import time
+from dataclasses import asdict
 from pathlib import Path
 
 from PySide6.QtCore import QObject, QRunnable, QStandardPaths, QStorageInfo, Qt, QThreadPool, QTimer, QUrl, Signal
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox, QDoubleSpinBox, QFileDialog, QFormLayout, QFrame,
-                               QGridLayout, QHBoxLayout, QHeaderView, QLineEdit, QMainWindow, QProgressBar, QPushButton, QScrollArea,
+                               QGridLayout, QHBoxLayout, QHeaderView, QLineEdit, QMainWindow, QMessageBox, QProgressBar, QPushButton, QScrollArea,
                                QSpinBox, QSplitter, QStackedWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 from atlas_worker import registry
@@ -22,6 +23,8 @@ from atlas_worker.registry import ENVIRONMENTS, NEEDS, TASKS
 
 from . import paths, profile as prof, resources, runtime
 from . import theme as T
+from .limits import Governor, Limits
+from .limits_ui import HardwareControls
 from .runner import Runner, Terminal
 from .widgets import Chart, fmt, label, panel
 
@@ -166,6 +169,23 @@ class MainWindow(QMainWindow):
         self.runner.finished.connect(self._job_finished)
         self.job_mode = None
         self.pending = None
+        self.planned_device = "cpu"
+        self.pending_device = None
+        self.run_threads, self.run_cap = 1, 100.0
+        self.limits = Limits.load(paths.load_settings().get("limits"))
+        self.governor = Governor(os.cpu_count() or 1, self)
+        self.governor.limits = self.limits
+        self.governor.updated.connect(self.show_usage)
+        self.runner.governor = self.governor
+        self.hw_config, self.hw_live = HardwareControls(False), HardwareControls(True)
+        for c in (self.hw_config, self.hw_live):
+            c.limit_changed.connect(self.limit_changed)
+        self.hw_config.accel_clicked.connect(self.accel_configure)
+        self.hw_live.accel_clicked.connect(self.accel_live)
+        self.save_limits = QTimer(self)
+        self.save_limits.setSingleShot(True)
+        self.save_limits.setInterval(400)
+        self.save_limits.timeout.connect(self._store_limits)
         self.setAcceptDrops(True)
         self._build()
         self.probe()
@@ -257,6 +277,8 @@ class MainWindow(QMainWindow):
                  "needs_reboot": f"{g.name}: reboot needed", "error": f"{g.name or 'NVIDIA'}: error"}[g.state]
         self.hw_label.setText(f"CPU {hw.cpu_threads}t   RAM {hw.ram_available / GB:.1f}/{hw.ram_total / GB:.0f} GB   DISK {hw.disk_free / GB:.0f} GB   GPU {state}")
         self.hw_label.setToolTip(g.detail)
+        self.governor.enabled = hw.limits_ok
+        self.sync_hardware()
         self.refresh_drives()
 
     def dragEnterEvent(self, e):
@@ -427,7 +449,7 @@ class MainWindow(QMainWindow):
             summary = f"{pr['name']}   {pr['rows']:,} images with masks"
         else:
             summary = f"{pr['name']}   {pr['rows']:,} {'images' if kind == 'images' else kind + ' files'}" + (f", {len(pr['classes'])} classes" if pr["classes"] else "")
-        self.ds_name.setText(summary + note)
+        self.ds_name.setText(summary + note + ("   untick any column the model must not see" if kind == "table" else ""))
         t = self.ds_table
         if pr["columns"]:
             t.setColumnCount(5)
@@ -436,6 +458,9 @@ class MainWindow(QMainWindow):
             colors = {"numeric": T.ACCENT, "categorical": T.CYAN, "datetime": T.VIOLET, "text": T.AMBER, "empty": T.ROSE}
             for i, c in enumerate(pr["columns"]):
                 t.setItem(i, 0, item(c["name"]))
+                if kind == "table":
+                    t.item(i, 0).setFlags(t.item(i, 0).flags() | Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
+                    t.item(i, 0).setCheckState(Qt.CheckState.Checked)
                 t.setItem(i, 1, item(c["kind"], colors[c["kind"]]))
                 t.setItem(i, 2, item(f"{c['missing']:.1%}", T.AMBER if c["missing"] > 0.2 else T.MUTED))
                 t.setItem(i, 3, item(f"{c['unique']:,}", T.MUTED))
@@ -530,6 +555,8 @@ class MainWindow(QMainWindow):
             msg, ok, level = "Choose the column to predict.", False, "warn"
         elif col is not None and col["name"] == self.time_box.currentData():
             msg, ok, level = "Target and time cannot be the same column.", False, "warn"
+        elif t in ("forecasting", "seq_classification") and find(self.time_box) is not None and find(self.time_box)["unique"] < pr["rows"]:
+            msg, ok, level = f"'{self.time_box.currentData()}' repeats, so these rows are many series mixed together. Use Regression or Classification.", False, "warn"
         elif t in ("regression", "forecasting") and col is not None and col["kind"] != "numeric":
             msg, ok, level = f"'{col['name']}' is {col['kind']}, but this task needs a numeric target.", False, "warn"
         elif t == "classification" and col is not None and col["unique"] > 50:
@@ -752,6 +779,7 @@ class MainWindow(QMainWindow):
         self.plan_label = label("", "muted", wrap=True)
         s.addWidget(self.plan_label)
         s.addStretch(1)
+        s.addWidget(self.hw_config)
         self.train_btn = QPushButton("Train")
         self.train_btn.setObjectName("primary")
         self.train_btn.clicked.connect(self.start_training)
@@ -854,7 +882,7 @@ class MainWindow(QMainWindow):
         batch = self.extra_widgets["batch"].value() if "batch" in self.extra_widgets else 0
         choice = choice or self.device_box.currentData()
         flavor = "cuda" if (choice != "cpu" and algo["gpu"] and self.hw.gpu.usable) else "cpu"
-        return resources.make_plan(self.hw, algo, self.task, self.profile, choice, runtime.installed_groups(flavor), batch)
+        return resources.make_plan(self.hw, algo, self.task, self.profile, choice, runtime.installed_groups(flavor, self.hw.gpu.backend), batch, self.limits)
 
     def update_plan(self, *_):
         if self.entry not in registry.ALGOS or self.hw is None or self.task not in registry.ALGOS[self.entry]["tasks"]:
@@ -868,6 +896,8 @@ class MainWindow(QMainWindow):
             html += "<br><br>" + "<br>".join(f"<span style='color:{T.ROSE}'>{w}</span>" for w in plan.blockers)
         self.plan_label.setText(html)
         self.train_btn.setEnabled(not plan.blockers)
+        self.hw_config.rows["vram"].setVisible(plan.device == "cuda" and "torch" in registry.ALGOS[self.entry]["groups"])
+        self.sync_accel()
 
     def collect_params(self):
         out = {}
@@ -894,6 +924,7 @@ class MainWindow(QMainWindow):
         self.progress.setFixedHeight(8)
         self.progress.setTextVisible(False)
         pg.root.addWidget(self.progress)
+        pg.root.addWidget(self.hw_live)
         self.term = Terminal()
         pg.root.addWidget(self.term, 1)
         foot = QHBoxLayout()
@@ -934,9 +965,133 @@ class MainWindow(QMainWindow):
         if self.runner.running or self.hw is None:
             return
         self.force_cpu = False
+        self.pending_device = None
         self._launch(self.device_box.currentData())
 
-    def _launch(self, choice):
+    # ---- hardware controls ------------------------------------------------------------
+    def sync_hardware(self):
+        """Bring both sets of controls in line with the machine and the saved limits."""
+        hw = self.hw
+        if hw is None:
+            return
+        g, lim = hw.gpu, self.limits
+        no_gpu = g.detail or "No usable NVIDIA GPU."
+        for c in (self.hw_config, self.hw_live):
+            c.set_ranges(hw.ram_total / GB, g.vram_total_mb / 1024 if g.vram_total_mb else 6)
+            c.rows["cpu"].set_value(lim.cpu_pct)
+            c.rows["ram"].set_value(int(lim.ram_gb * 2) if lim.ram_gb else c.ram_top)
+            c.rows["gpu"].set_value(lim.gpu_pct)
+            c.rows["vram"].set_value(int(lim.vram_gb * 2) if lim.vram_gb else c.vram_top)
+            c.rows["ram"].set_available(hw.limits_ok, hw.limits_why)
+            c.rows["gpu"].set_available(hw.limits_ok and g.usable, hw.limits_why or no_gpu)
+            c.rows["vram"].set_available(g.usable, no_gpu)
+        self.sync_accel()
+
+    def sync_accel(self):
+        """The GPU accelerator appears when a GPU is found, and works when the algorithm can use it."""
+        hw = self.hw
+        if hw is None:
+            return
+        g = hw.gpu
+        algo = registry.ALGOS.get(self.entry)
+        running = self.runner.running and self.job_mode == "train"
+        if running:
+            on = self.planned_device == "cuda"
+        elif algo and self.profile and self.task in algo["tasks"]:
+            on = self.current_plan().device == "cuda"
+        else:
+            on = False
+        can = bool(g.usable and algo and algo["gpu"])
+        tip = (g.detail if not g.usable else "Choose an algorithm first." if not algo
+               else "This algorithm runs on the CPU only, so a GPU cannot speed it up." if not algo["gpu"] else f"Train on {g.name}.")
+        self.hw_config.set_accel(g.state != "none", can, on, tip)
+        self.hw_live.set_accel(g.state != "none", can and running, on, "Restarts this training on the other device. Progress so far is lost." if can else tip)
+
+    def limit_changed(self, key, value):
+        source, lim = self.sender(), self.limits
+        if key in ("cpu", "gpu"):
+            setattr(lim, f"{key}_pct", value)
+        else:
+            top = source.ram_top if key == "ram" else source.vram_top
+            setattr(lim, f"{key}_gb", 0.0 if value >= top else value / 2)
+        for c in (self.hw_config, self.hw_live):
+            if c is not source:
+                c.rows[key].set_value(value)
+        self.governor.set_limits(lim)
+        self.save_limits.start()
+        self.update_plan()
+
+    def _store_limits(self):
+        s = paths.load_settings()
+        s["limits"] = asdict(self.limits)
+        paths.save_settings(s)
+
+    def accel_configure(self, on):
+        self.device_box.setCurrentIndex(self.device_box.findData("gpu" if on else "cpu"))
+        self.update_plan()
+
+    def confirm(self, text):
+        return QMessageBox.question(self, "Atlas Engine", text) == QMessageBox.StandardButton.Yes
+
+    def accel_live(self, on):
+        if not self.runner.running or self.job_mode != "train" or on == (self.planned_device == "cuda"):
+            self.sync_accel()
+            return
+        target = "gpu" if on else "cpu"
+        download = [n for n in self.current_plan(target).notes if n.startswith("First-time download")]
+        extra = f" {download[0]}." if download else ""
+        if not self.confirm(f"Restart this training on the {target.upper()}? Progress so far will be lost.{extra}"):
+            self.sync_accel()
+            return
+        self.device_box.setCurrentIndex(self.device_box.findData(target))
+        self.pending_device = target
+        self.runner.cancel()
+
+    def show_usage(self, st):
+        c = self.hw_live
+        if st.get("state") == "idle":
+            for key in ("cpu", "ram", "gpu"):
+                c.show_reading(key, "-")
+            c.show_status("")
+            return
+        if "cpu_pct" in st:
+            c.show_reading("cpu", f"{st['cpu_pct']:.0f}% of machine", st["cpu_pct"] / 100, st["cpu_slowed"])
+        if "ram_bytes" in st:
+            top = (self.limits.ram_gb * GB) or st["ram_total"]
+            c.show_reading("ram", f"{st['ram_bytes'] / GB:.1f} GB in use", st["ram_bytes"] / top, st["ram_slowed"])
+        gpu = st.get("gpu")
+        c.show_reading("gpu", f"{gpu['util']:.0f}%   {gpu['used_mb'] / 1024:.1f}/{gpu['total_mb'] / 1024:.1f} GB" if gpu else "not found",
+                       (gpu["util"] / 100) if gpu else 0, bool(st.get("gpu_gated")))
+        if st.get("paused"):
+            text = f"Paused: only {st['available'] / 2 ** 20:.0f} MB of RAM is free on this machine. Training continues by itself once memory is free."
+        elif st.get("ram_raised_to"):
+            text = (f"This job needs more RAM than your limit, and this machine has no swap to hold the rest. "
+                    f"The limit has risen to {st['ram_raised_to'] / GB:.1f} GB so training keeps moving.")
+        elif st.get("ram_slowed"):
+            text = "Low on free memory: training is slower so this machine stays usable." if st.get("ram_guard") else "RAM limit reached: training is slower, and still running."
+        elif st.get("cpu_slowed"):
+            text = "Held to your CPU limit: training is slower, and still running."
+        elif st.get("gpu_gated"):
+            text = "Held to your GPU limit: training is slower, and still running."
+        elif self.limits.cpu_pct > self.run_cap + 1:
+            text = f"This run started with {self.run_threads} threads, so it cannot use more than {self.run_cap:.0f}% of the CPU. A higher limit applies from the next run."
+        else:
+            text = ""
+        c.show_status(text)
+
+    def _write_limits(self, t):
+        lim, hw = self.limits, self.hw
+        if lim.cpu_pct >= 100 and not lim.ram_gb and lim.gpu_pct >= 100 and not lim.vram_gb:
+            return
+        t.write("$ apply limits", "cmd")
+        t.table([("cpu", "no limit" if lim.cpu_pct >= 100 else f"{lim.cpu_pct}% of the machine"), ("ram", f"{lim.ram_gb:.1f} GB" if lim.ram_gb else "no limit"),
+                 ("gpu", "no limit" if lim.gpu_pct >= 100 else f"{lim.gpu_pct}%"), ("vram", f"{lim.vram_gb:.1f} GB" if lim.vram_gb else "no limit")])
+        if hw.limits_ok:
+            t.write("  limits slow this run down and never stop it; you can change them while it trains", "muted")
+        else:
+            t.write(f"  ! {hw.limits_why} CPU use is reduced by running fewer threads.", "warn")
+
+    def _launch(self, choice, note=None):
         algo = registry.ALGOS[self.entry]
         e = self.entries[self.entry]
         self.hw = resources.detect(paths.data_dir())
@@ -947,6 +1102,8 @@ class MainWindow(QMainWindow):
         self.job_mode = "train"
         self.mark_stage("hardware")
         t = self.term
+        if note:
+            t.write(note, "warn")
         g = self.hw.gpu
         t.write("$ probe hardware", "cmd")
         t.table([("cpu", f"{self.hw.cpu_threads} threads"), ("ram", f"{self.hw.ram_available / GB:.1f} GB free of {self.hw.ram_total / GB:.1f} GB"),
@@ -963,6 +1120,7 @@ class MainWindow(QMainWindow):
                 t.write(f"  x {w}", "error")
             self.train_msg.setText(plan.blockers[0])
             return
+        self._write_limits(t)
         job = self._make_job(e, plan)
         path = paths.data_dir() / "cache" / f"{job['run_id']}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -980,10 +1138,14 @@ class MainWindow(QMainWindow):
             return
         if steps:
             self.mark_stage("runtime")
-        steps.append(runtime.Step("check runtime sees the planned device", runtime.worker_argv(plan.flavor, "selfcheck"), env=env if plan.device == "cpu" else {}))
-        steps.append(runtime.Step(f"train #{e['id']} {e['name']}", runtime.worker_argv(plan.flavor, "train", path), env=env))
+        steps.append(runtime.Step("check runtime sees the planned device", runtime.worker_argv(plan.flavor, "selfcheck", *(["xgboost"] if plan.device == "cuda" and "boost" in algo["groups"] else [])), env=env if plan.device == "cpu" else {}))
+        steps.append(runtime.Step(f"train #{e['id']} {e['name']}", runtime.worker_argv(plan.flavor, "train", path), env=env, governed=True))
         self.planned_device = plan.device
+        self.last_batch = plan.batch_size
+        self.run_threads, self.run_cap = plan.threads, plan.threads / self.hw.cpu_threads * 100
+        self.governor.use_gpu = plan.device == "cuda"
         self.begin_job(steps)
+        self.sync_accel()
 
     def _make_job(self, e, plan):
         x = self.extra_widgets
@@ -994,6 +1156,10 @@ class MainWindow(QMainWindow):
                    params=self.collect_params(), split=dict(val=x["val"].value(), test=x["test"].value(), seed=42),
                    device=plan.device, threads=plan.threads, batch_size=plan.batch_size)
         ds = job["dataset"]
+        if pr["kind"] == "table":
+            ticks = [self.ds_table.item(i, 0) for i in range(self.ds_table.rowCount())]
+            if any(c.checkState() != Qt.CheckState.Checked for c in ticks):
+                ds["features"] = [c.text() for c in ticks if c.checkState() == Qt.CheckState.Checked]
         if self.task not in ("classification", "regression", "forecasting", "seq_classification", "anomaly"):
             ds["time_column"] = None
         if self.task in ("clustering", "dimreduction") or pr["kind"] in ("images", "detection", "segmentation", "audio", "video", "environment"):
@@ -1004,6 +1170,8 @@ class MainWindow(QMainWindow):
             ds.update(user_column=self.user_box.currentData(), item_column=self.item_box.currentData())
         if pr["kind"] == "environment":
             ds["env"] = pr["env"]
+        if plan.device == "cuda" and self.limits.vram_gb:
+            job["vram_limit_mb"] = int(self.limits.vram_gb * 1024)
         for key, src in (("cv", "cv"), ("tune", "tune"), ("contamination", "contamination"), ("horizon", "horizon"), ("seq_len", "lags")):
             if src in x:
                 job[key] = x[src].value()
@@ -1049,6 +1217,12 @@ class MainWindow(QMainWindow):
             self.force_cpu = False
             self._launch("cpu")
             return
+        if mode == "train" and self.pending_device:
+            target, self.pending_device = self.pending_device, None
+            self._launch(target, note=f"restarted on the {target.upper()}")
+            return
+        if mode == "train" and not ok and not cancelled and self._retry_after_gpu_memory():
+            return
         if mode == "convert":
             if ok:
                 src, out = self.pending
@@ -1089,6 +1263,20 @@ class MainWindow(QMainWindow):
             self.export_btn.setEnabled(True)
             if not ok and not cancelled:
                 self.export_msg.setText(getattr(self, "last_error", None) or "Export failed. See the log.")
+
+    def _retry_after_gpu_memory(self):
+        """A GPU that runs out of memory costs time, not the run: smaller batches, then the CPU."""
+        error = getattr(self, "last_error", None) or ""
+        if self.planned_device != "cuda" or "out of memory" not in error.lower():
+            return False
+        self.last_error = None
+        box = self.extra_widgets.get("batch")
+        if box is not None and self.last_batch > 1:
+            box.setValue(max(1, self.last_batch // 2))
+            self._launch("gpu", note=f"the GPU ran out of memory: restarting with batch size {box.value()}")
+        else:
+            self._launch("cpu", note="the GPU ran out of memory at the smallest batch: restarting on the CPU")
+        return True
 
     # ---- 05 results -----------------------------------------------------------------
     def _page_results(self):

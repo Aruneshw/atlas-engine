@@ -165,14 +165,15 @@ def suggest(profile: dict) -> dict:
     time = next((c for c in cols if c["kind"] == "datetime"), None)
     if time is None:
         time = next((c for c in cols if c["name"].lower() in TIME_HINTS and c["kind"] == "numeric"), None)
+    repeats = time is not None and time["unique"] < profile["rows"]      # many rows per time is not one series
     if target is None:
-        task = "forecasting" if time else "clustering"
+        task = "regression" if repeats else "forecasting" if time else "clustering"
         if time and usable:
             target = next((c for c in usable if c["kind"] == "numeric"), None)
     elif target["kind"] == "categorical" or target["unique"] <= 20:
         task = "classification"       # a time column still gives a time-ordered split here
     else:
-        task = "forecasting" if time else "regression"
+        task = "forecasting" if time and not repeats else "regression"
     return dict(target=target["name"] if target else None, time=time["name"] if time else None, task=task)
 
 

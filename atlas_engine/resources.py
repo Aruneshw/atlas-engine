@@ -5,6 +5,7 @@ This runs inside the packaged app before any training runtime exists.
 from __future__ import annotations
 
 import ctypes
+import math
 import os
 import re
 import shutil
@@ -46,6 +47,8 @@ class Hardware:
     disk_free: int
     gpu: GPU
     platform: str = field(default_factory=lambda: sys.platform)
+    limits_ok: bool = False       # live CPU, RAM and GPU limits can be applied here
+    limits_why: str = ""          # why not, in words for the interface
 
 
 def _run(cmd, timeout=8):
@@ -125,10 +128,38 @@ def _disk_probe(path: Path) -> Path:
     return p
 
 
+_limit_support = None
+
+
+def limit_support() -> tuple[bool, str]:
+    """Whether this machine can apply live limits: (yes or no, why not). Probed once."""
+    global _limit_support
+    if _limit_support is None:
+        _limit_support = _probe_limits()
+    return _limit_support
+
+
+def _probe_limits() -> tuple[bool, str]:
+    if not sys.platform.startswith("linux"):
+        return False, "Live limits need Linux with systemd."
+    if shutil.which("systemd-run") is None:
+        return False, "Live limits need systemd, which this system does not use."
+    uid = os.getuid()
+    try:
+        have = Path(f"/sys/fs/cgroup/user.slice/user-{uid}.slice/user@{uid}.service/cgroup.controllers").read_text().split()
+    except OSError:
+        return False, "This system does not give your user its own control groups."
+    if not {"cpu", "memory"} <= set(have):
+        return False, "This system does not let your user limit CPU and memory."
+    code, _ = _run(["systemd-run", "--user", "--scope", "--quiet", "--collect", "true"])
+    return (True, "") if code == 0 else (False, "Could not start a limited process on this system.")
+
+
 def detect(data_dir: Path) -> Hardware:
     total, avail = memory()
+    ok, why = limit_support()
     return Hardware(cpu_threads=os.cpu_count() or 1, ram_total=total, ram_available=avail,
-                    disk_free=shutil.disk_usage(_disk_probe(data_dir)).free, gpu=detect_gpu())
+                    disk_free=shutil.disk_usage(_disk_probe(data_dir)).free, gpu=detect_gpu(), limits_ok=ok, limits_why=why)
 
 
 # Rough install footprint in GB of each runtime group.
@@ -165,7 +196,7 @@ def estimate_ram(profile, algo, task) -> int:
 
 
 def make_plan(hw: Hardware, algo: dict, task: str, profile: dict, choice: str = "auto", installed: set | None = None,
-              batch: int = 0) -> Plan:
+              batch: int = 0, limits=None) -> Plan:
     """Decide where and how a job runs. `choice` is auto, cpu or gpu."""
     gpu = hw.gpu
     device, notes, warns, block = "cpu", [], [], []
@@ -182,19 +213,24 @@ def make_plan(hw: Hardware, algo: dict, task: str, profile: dict, choice: str = 
         warns.append("This kind of model is slow on CPU: use few epochs or a small variant.")
 
     threads = max(1, hw.cpu_threads - 2 if hw.cpu_threads > 4 else hw.cpu_threads - 1)
+    if limits and limits.cpu_pct < 100:     # measured: threads beyond the limit waste it spinning, and ran 4x slower
+        threads = min(threads, max(1, math.ceil(hw.cpu_threads * limits.cpu_pct / 100)))
+    vram_free = min(gpu.vram_free_mb, int(limits.vram_gb * 1024)) if limits and limits.vram_gb else gpu.vram_free_mb
     size = batch
     if not size:
         size = 64
         if task in BATCHES:
             cpu, small, mid, big = BATCHES[task]
-            size = cpu if device == "cpu" else small if gpu.vram_free_mb < 4000 else mid if gpu.vram_free_mb < 8000 else big
-        elif device == "cuda" and gpu.vram_free_mb < 2000:
+            size = cpu if device == "cpu" else small if vram_free < 4000 else mid if vram_free < 8000 else big
+        elif device == "cuda" and vram_free < 2000:
             size = 32
     if deep:
         notes.append(f"Batch size {size}")
 
     need = estimate_ram(profile, algo, task)
     notes.append(f"Estimated RAM {need / GB:.1f} GB of {hw.ram_available / GB:.1f} GB available")
+    if limits and limits.ram_gb and need > limits.ram_gb * GB:
+        warns.append(f"This job may need about {need / GB:.1f} GB and your limit is {limits.ram_gb:.1f} GB. It will keep running, but expect it to take much longer.")
     if need > hw.ram_available:
         limit = algo.get("max_rows")
         if limit and profile.get("rows", 0) > limit:

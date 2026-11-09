@@ -20,4 +20,6 @@ PINS = {
     "torch": ['torch==2.15.0'],
     "vision": ['torchvision==0.29.2', 'pillow==13.0.0'],
 }
+# XGBoost 3.4 is built for CUDA 13.3 and silently runs on the CPU under a CUDA 12 driver. 3.3 is the newest that reaches the GPU there.
+XGBOOST_CUDA12 = "xgboost==3.3.0"
 PYTHON = "3.12"
